@@ -61,8 +61,8 @@ const fetchData = async () => {
             </tr>
           </thead>
           <tbody>
-            <template v-for="user in filteredData" :key="user._id">
-              <tr v-if="user.rank <= 15">
+            <template v-for="(user, index) in filteredData" :key="user._id">
+              <tr v-if="index < 15">
                 <td
                   class="border-[1px] border-l-0 border-black py-1 text-center"
                 >
