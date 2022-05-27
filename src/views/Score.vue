@@ -4,10 +4,17 @@ import replaybtn from "../assets/images/buttons/replaybtn.png";
 import blankpaper from "../assets/images/blank-paper.png";
 import shopbtn from "../assets/images/buttons/shopbtn.png";
 
-import { ref, onBeforeMount } from "vue";
+import { ref, onBeforeMount, computed } from "vue";
 let scoreBoard = ref();
-onBeforeMount(() => {
-  fetchData();
+const searchText = ref("");
+onBeforeMount(async () => {
+  await fetchData();
+});
+const filteredData = computed(() => {
+  let filter = new RegExp(searchText.value, "i");
+  return scoreBoard.value.filter((user) => {
+    return user.name.match(filter);
+  });
 });
 const fetchData = async () => {
   try {
@@ -31,36 +38,47 @@ const fetchData = async () => {
         <div class="score__headersub">of all times</div>
       </div>
       <div v-if="!scoreBoard">Loading...</div>
-      <table
-        class="table-responsive table w-full"
-        aria-labelledby="tabelLabel"
-        v-else
-      >
-        <thead>
-          <tr>
-            <td class="border-[1px] border-l-0 border-black text-center">
-              No.
-            </td>
-            <td class="border-[1px] border-black text-center">Name</td>
-            <td class="border-[1px] border-r-0 border-black text-center">
-              Point
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(user, index) in scoreBoard" :key="user._id">
-            <td class="border-[1px] border-l-0 border-black py-1 text-center">
-              {{ index + 1 }}
-            </td>
-            <td class="border-[1px] border-black text-center">
-              {{ user.name }}
-            </td>
-            <td class="border-[1px] border-r-0 border-black text-center">
-              {{ Number(user.point.toFixed(1)) }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div v-else>
+        <input
+          type="text"
+          id="gameformEmail"
+          placeholder="Search name"
+          v-model="searchText"
+        />
+        <table
+          class="table-responsive table w-full"
+          aria-labelledby="tabelLabel"
+        >
+          <thead>
+            <tr>
+              <td class="border-[1px] border-l-0 border-black text-center">
+                Rank
+              </td>
+              <td class="border-[1px] border-black text-center">Name</td>
+              <td class="border-[1px] border-r-0 border-black text-center">
+                Point
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <template v-for="user in filteredData" :key="user._id">
+              <tr v-if="user.rank <= 15">
+                <td
+                  class="border-[1px] border-l-0 border-black py-1 text-center"
+                >
+                  {{ user.rank }}
+                </td>
+                <td class="border-[1px] border-black text-center">
+                  {{ user.name }}
+                </td>
+                <td class="border-[1px] border-r-0 border-black text-center">
+                  {{ Number(user.point.toFixed(1)) }}
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+      </div>
       <div class="score__actionbtngroup">
         <div class="actionbtngroup__item">
           <img :src="shopbtn" />

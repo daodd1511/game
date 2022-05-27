@@ -11,6 +11,9 @@
       line-height: 0.5;
     }
   }
+  input::placeholder {
+    padding-left: .5em;
+  }
   .table{
     height: calc(100vh/2);
   }
