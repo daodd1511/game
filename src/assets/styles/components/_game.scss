@@ -13,7 +13,6 @@
     margin-top: 90px;
   }
   .game__navbar{
-    background: url("../../src/assets/images/game/progress-bar-bg.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     height: 60px;
@@ -34,9 +33,6 @@
       .react-sweet-progress-symbol{
         display: none;
       }
-      .react-sweet-progress-line-inner{
-        background-color: transparent!important;
-      }
       .react-sweet-progress-line-inner-status-active:before{
         animation: none;
       }
@@ -46,18 +42,16 @@
       background-color: transparent!important;
     }
     // .react-sweet-progress-line-inner.react-sweet-progress-line-inner-status-active:after,
-    .react-sweet-progress-line-inner::after
+    .progress-crown
     {
-      background: url("../../src/assets/images/sas-crown-icon.png");
       background-size: contain;
       background-repeat: no-repeat;
       content: "";
       width: 40px;
       height: 50px;
-      z-index: 1000;
+      // z-index: 99;
       position: absolute;
-      right: -20px;
-      top: -20px;
+      top: 0px;
     }
   }
   .sas__gamewrapper{
@@ -67,7 +61,6 @@
       overflow: hidden;
       z-index: 10;
       .gameitem__dialog{
-        background-image: url('../../src/assets/images/game/dialog-box.png');
         background-size: cover;
         background-repeat: no-repeat;
         width: 92%;

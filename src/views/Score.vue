@@ -1,7 +1,9 @@
 <script setup>
-import shopbtn from "../assets/images/buttons/shopbtn.png";
 import sharebtn from "../assets/images/buttons/sharebtn.png";
 import replaybtn from "../assets/images/buttons/replaybtn.png";
+import blankpaper from "../assets/images/blank-paper.png";
+import shopbtn from "../assets/images/buttons/shopbtn.png";
+
 import { ref, onBeforeMount } from "vue";
 let scoreBoard = ref();
 onBeforeMount(() => {
@@ -19,19 +21,43 @@ const fetchData = async () => {
 </script>
 
 <template>
-  <div class="sas__blankpaper">
+  <div
+    class="sas__blankpaper p-8 pt-24"
+    :style="'background-image: url(' + blankpaper + ')'"
+  >
     <div class="sas__score">
       <div class="score__header">
         <div class="score__headermain">top best kings</div>
         <div class="score__headersub">of all times</div>
       </div>
       <div v-if="!scoreBoard">Loading...</div>
-      <table class="table-responsive table" aria-labelledby="tabelLabel" v-else>
+      <table
+        class="table-responsive table w-full"
+        aria-labelledby="tabelLabel"
+        v-else
+      >
+        <thead>
+          <tr>
+            <td class="border-[1px] border-l-0 border-black text-center">
+              No.
+            </td>
+            <td class="border-[1px] border-black text-center">Name</td>
+            <td class="border-[1px] border-r-0 border-black text-center">
+              Point
+            </td>
+          </tr>
+        </thead>
         <tbody>
           <tr v-for="(user, index) in scoreBoard" :key="user._id">
-            <td>{{ index + 1 }}</td>
-            <td>{{ user.name }}</td>
-            <td>{{ Number(user.point.toFixed(1)) }}</td>
+            <td class="border-[1px] border-l-0 border-black py-1 text-center">
+              {{ index + 1 }}
+            </td>
+            <td class="border-[1px] border-black text-center">
+              {{ user.name }}
+            </td>
+            <td class="border-[1px] border-r-0 border-black text-center">
+              {{ Number(user.point.toFixed(1)) }}
+            </td>
           </tr>
         </tbody>
       </table>

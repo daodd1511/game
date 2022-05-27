@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@font-face {
+  font-family: 'classique-saigon';
+  src: url('./assets/fonts/Classique-Saigon.woff') format('woff'),
+       url('./assets/fonts/Classique-Saigon.ttf') format('truetype');
+  }
+@font-face {
+  font-family: 'enchanted-land';
+  src: url('./assets/fonts/Enchanted-Land.woff') format('woff'),
+       url('./assets/fonts/Enchanted-Land.otf') format('truetype');
+}
+@font-face {
+font-family: 'trattatello';
+src: url('./assets/fonts/Trattatello.eot'); /* IE9 Compat Modes */
+src: url('./assets/fonts/Trattatello.woff2') format('woff2'), /* Super Modern Browsers */
+     url('./assets/fonts/Trattatello.woff') format('woff'), /* Pretty Modern Browsers */
+     url('./assets/fonts/Trattatello.ttf')  format('truetype'); /* Safari, Android, iOS */
+}

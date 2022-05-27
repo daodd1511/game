@@ -1,7 +1,12 @@
-<script setup></script>
+<script setup>
+import blankpaper from "../assets/images/blank-paper.png";
+</script>
 
 <template>
-  <div class="sas__blankpaper">
+  <div
+    class="sas__blankpaper"
+    :style="'background-image: url(' + blankpaper + ')'"
+  >
     <div class="blankpaper__content">
       <div class="sas__about">
         <div>
